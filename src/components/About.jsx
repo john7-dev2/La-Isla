@@ -2,109 +2,89 @@ import { motion } from 'framer-motion'
 
 const About = () => {
   const categories = [
-    {
-      name: 'Sip & Paint',
-      image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400'
-    },
-    {
-      name: 'Workshop',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400'
-    },
-    {
-      name: 'Live Music',
-      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400'
-    },
-    {
-      name: 'Cocktails',
-      image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400'
-    },
-    {
-      name: 'Espresso Bar',
-      image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400'
-    },
-    {
-      name: 'Private Parties',
-      image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400'
-    }
+    { name: 'Clean Eating', icon: '>' },
+    { name: 'Family Friendly', icon: '>' },
+    { name: 'Estopean', icon: '>' },
+    { name: 'Cheap', icon: '>' },
+    { name: 'Healthy', icon: '>' }
   ]
 
   return (
-    <section id="events" className="py-12 md:py-20 px-0 md:px-4 lg:px-8 bg-recipe-cream">
+    <section id="categories" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-recipe-peach">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-12 px-4"
-        >
-          <div className="w-16 h-0.5 bg-recipe-orange mx-auto mb-4 md:mb-6"></div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-recipe-text mb-2">
-            Explore <span className="text-recipe-orange">Experiences</span>
-          </h2>
-          <p className="text-recipe-gray text-sm sm:text-base mt-3 md:mt-4">
-            From cocktails to coffee, live music to art workshops
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Side - Categories */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="order-2 lg:order-1"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-recipe-text mb-8">
+              Experience Food<br />
+              of the <span className="text-recipe-yellow">Real Taste</span>
+            </h2>
 
-        {/* Mobile: Horizontal Scroll */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide px-4">
-          <div className="flex gap-4 pb-4">
-            {categories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-recipe-text mb-6">Categories</h3>
+              <div className="space-y-3">
+                {categories.map((category, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center justify-between py-3 px-4 bg-white/50 rounded-lg cursor-pointer hover:bg-white/80 transition-all"
+                  >
+                    <span className="text-recipe-text font-medium">{category.name}</span>
+                    <span className="text-recipe-text">{category.icon}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-recipe-gray text-sm leading-relaxed">
+                Explore recipe vartious.cors here
+              </p>
+              <p className="text-recipe-gray text-sm leading-relaxed">
+                See foodstuffs in here.be.ice.kes.kes.kes
+              </p>
+              <p className="text-recipe-gray text-sm leading-relaxed">
+                Discover recipe with best quality and tasty
+                recipes.
+              </p>
+              <motion.button
+                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex-shrink-0 w-32 cursor-pointer"
+                className="border-2 border-recipe-text text-recipe-text px-8 py-3 rounded-full font-medium text-sm hover:bg-recipe-text hover:text-white transition-all mt-4"
               >
-                <div className="relative">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mb-3 border-4 border-white shadow-xl ring-2 ring-recipe-orange/20">
-                    <img 
-                      src={category.image} 
-                      alt={category.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute top-0 right-0 bg-recipe-orange text-white text-xs px-2 py-1 rounded-full shadow-lg">
-                    ✨
-                  </div>
-                </div>
-                <h3 className="text-xs font-semibold text-recipe-text text-center leading-tight">
-                  {category.name}
-                </h3>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                Learn more
+              </motion.button>
+            </div>
+          </motion.div>
 
-        {/* Desktop: Grid Layout */}
-        <div className="hidden md:grid grid-cols-3 md:grid-cols-6 gap-8 max-w-5xl mx-auto px-4">
-          {categories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="flex flex-col items-center cursor-pointer group"
-            >
-              <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-white shadow-lg group-hover:shadow-xl transition-all">
+          {/* Right Side - Circular Food Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center order-1 lg:order-2"
+          >
+            <div className="relative">
+              <div className="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden bg-white shadow-2xl ring-8 ring-white/50">
                 <img 
-                  src={category.image} 
-                  alt={category.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" 
+                  alt="Delicious Food" 
+                  className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-sm font-medium text-recipe-text text-center">
-                {category.name}
-              </h3>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

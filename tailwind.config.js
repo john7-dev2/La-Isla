@@ -7,15 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'recipe-cream': '#faf8f5',
+        'recipe-cream': '#f5f5dc',
+        'recipe-peach': '#fef3e8',
         'recipe-white': '#ffffff',
-        'recipe-orange': '#ff6b35',
+        'recipe-green': '#1a8754',
+        'recipe-yellow': '#f4c430',
         'recipe-text': '#2d3436',
         'recipe-gray': '#636e72',
         'recipe-light-gray': '#b2bec3',
         'recipe-footer': '#2c3e50',
         'recipe-footer-dark': '#1a252f',
-        'recipe-blue': '#4a69bd',
       },
       fontFamily: {
         'display': ['Playfair Display', 'Georgia', 'serif'],

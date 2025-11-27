@@ -1,9 +1,15 @@
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
+
+  const isActive = (path) => location.pathname === path
+
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <motion.header
@@ -14,31 +20,58 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            whileHover={{ opacity: 0.8 }}
-            className="flex items-center gap-2"
-          >
-            <span className="text-3xl font-bold text-recipe-text">La Isla</span>
-            <span className="text-3xl font-bold text-recipe-orange">Delhi</span>
-          </motion.a>
+          <Link to="/">
+            <motion.div
+              whileHover={{ opacity: 0.8 }}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <span className="text-2xl font-bold text-recipe-text">1food</span>
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#menu" className="text-sm text-recipe-text hover:text-recipe-orange transition-colors font-medium">Menu</a>
-            <a href="#cocktails" className="text-sm text-recipe-text hover:text-recipe-orange transition-colors font-medium">Cocktails</a>
-            <a href="#events" className="text-sm text-recipe-text hover:text-recipe-orange transition-colors font-medium">Events</a>
-            <a href="#gallery" className="text-sm text-recipe-text hover:text-recipe-orange transition-colors font-medium">Gallery</a>
+            <Link 
+              to="/" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/blog" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/blog') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Blog
+            </Link>
+            <Link 
+              to="/about" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/about') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              About Us
+            </Link>
+            <Link 
+              to="/categories" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/categories') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Categories
+            </Link>
+            <Link 
+              to="/contact" 
+              className={`text-sm font-medium transition-colors ${
+                isActive('/contact') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Contact
+            </Link>
           </nav>
-
-          {/* CTA Button */}
-          <motion.button
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="hidden md:block bg-recipe-blue hover:bg-recipe-blue/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all"
-          >
-            Reserve Table
-          </motion.button>
 
           {/* Mobile Menu Button */}
           <button 
@@ -59,13 +92,51 @@ const Header = () => {
           className="md:hidden bg-white border-t border-gray-100"
         >
           <div className="px-4 py-6 space-y-4">
-            <a href="#menu" className="block text-recipe-text hover:text-recipe-orange transition-colors py-2">Menu</a>
-            <a href="#cocktails" className="block text-recipe-text hover:text-recipe-orange transition-colors py-2">Cocktails</a>
-            <a href="#events" className="block text-recipe-text hover:text-recipe-orange transition-colors py-2">Events</a>
-            <a href="#gallery" className="block text-recipe-text hover:text-recipe-orange transition-colors py-2">Gallery</a>
-            <button className="block w-full bg-recipe-blue text-white px-6 py-3 rounded-full text-center font-medium mt-4">
-              Reserve Table
-            </button>
+            <Link 
+              to="/" 
+              onClick={closeMenu}
+              className={`block py-2 transition-colors ${
+                isActive('/') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/blog" 
+              onClick={closeMenu}
+              className={`block py-2 transition-colors ${
+                isActive('/blog') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Blog
+            </Link>
+            <Link 
+              to="/about" 
+              onClick={closeMenu}
+              className={`block py-2 transition-colors ${
+                isActive('/about') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              About Us
+            </Link>
+            <Link 
+              to="/categories" 
+              onClick={closeMenu}
+              className={`block py-2 transition-colors ${
+                isActive('/categories') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Categories
+            </Link>
+            <Link 
+              to="/contact" 
+              onClick={closeMenu}
+              className={`block py-2 transition-colors ${
+                isActive('/contact') ? 'text-recipe-green' : 'text-recipe-text hover:text-recipe-green'
+              }`}
+            >
+              Contact
+            </Link>
           </div>
         </motion.div>
       )}
